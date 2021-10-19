@@ -1,14 +1,15 @@
-const reversedString = (str) => {
-    // process
+// funtion to reverse string
+const reverseString = str => {
+  return splitString = str.split("").reverse().join("")
+};
 
-    return // return a value
-}
+console.log(reverseString('juventus'))
 
-const checkEvenOdd = (number) => {
-    // process
 
-    return // return a value
-}
 
-console.log(checkEvenOdd("pagi")); // expected output : igap
-console.log(checkEvenOdd(7)); // expected output : 7 is Odd Number
+// function to check odd/even number
+const checkEvenOdd = num => {
+  return (num % 2  == 0) ? num + " is even" : num + " is odd"
+};
+
+console.log(checkEvenOdd(7))
