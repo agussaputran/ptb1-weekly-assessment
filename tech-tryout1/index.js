@@ -14,6 +14,7 @@ function sumOfArray(arr1, arr2) {
      result = result + arr2[deadline];
     }
     
+    
     return result
     }
 
