@@ -1,10 +1,18 @@
 function sumOfArray(arr1, arr2) {
-    let result = 0
-    // the logic 
-    // type the code below
+let a = arr1.length;
+let b = arr2.length;
 
-    // type the code above
-    return result
+for(let deadline=0; deadline<a; deadline++)
+{
+ result = result + arr1[deadline];
+}
+
+for(let deadline=0; deadline<b; deadline++)
+{
+ result = result + arr2[deadline];
+}
+
+return result
 }
 
 console.log(sumOfArray([1,2,3,5], [1,2,3])) // expected output : 17
