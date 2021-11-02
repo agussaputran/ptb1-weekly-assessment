@@ -17,7 +17,15 @@ output:
 const findData = (id) => {
     // in this function you have to find data in data provided with id from param
     // if the data doesn't exist then just print data not found
-    console.log(`data with id ${id} not found`)
+    const record = data.find((item) => item.id === parseInt(id));
+    if (!record) {
+        console.log(`Data with id ${id} NOT found`)
+    } else {
+        console.log(`Data with id ${id} found!`)
+    }
+    
+    return record;
+
 }
 
 // function to update data in object array base on param id
@@ -37,25 +45,48 @@ const updateData = (id, newData) => {
     // if the second parameter does not have any of the appropriate properties(firstName,lastName,age) then
     // just print "the object structure in the second parameter does not match with db in data.js"
     // if the data doesn't exist then just print data not found
-    console.log(`data with id ${id} not found`)
+    const record = findData(id);
+    if (!record) {
+        console.log(`Data with id ${id} NOT updated...`)
+    } else if (typeof newData !== 'object') {
+        console.log(`Data with id ${id} NOT updated... The second parameter must be object.`)
+    } else if (!newData.hasOwnProperty('firstName') || !newData.hasOwnProperty('lastName') || !newData.hasOwnProperty('age')) {
+        console.log(`Data with id ${id} NOT updated... The object structure in the second parameter does not match with db in data.js.`)
+    } else {
+        Object.assign(record, newData)
+        console.log(`Data with id ${id} was updated! Record after update:`, record)
+    }
+    return record;
+
 }
 
 const deleteData = (id) => {
     // in this function
     // you have to delete data with the appropriate id of param
     // if the data doesn't exist then just print data not found
-    console.log(`data with id ${id} not found`);
+
+    const record = findData(id);
+    if (!record) {
+        console.log(`Data with id ${id} NOT deleted...d`)
+    } else {
+        const index = data.indexOf(record);
+        data.splice(index, 1);
+        console.log(`Data with id ${id} deleted.`)
+        console.log('Current database after deletion:', data)
+    }
+    return record
 }
 
-// findData(1)    
- /* expected output :
-                    data with id 1 found: 
-                        { id: 1, firstName: 'Agus', lastName: 'Saputra', age: 24 }
-                */
+console.log('\n--- Test FIND data ---')
+findData(1)
+/* expected output :
+                   data with id 1 found: 
+                       { id: 1, firstName: 'Agus', lastName: 'Saputra', age: 24 }
+               */
 
 // findData(9) // expected output : data with id 9 not found
 
-
+console.log('\n--- Test UPDATE data ---')
 updateData(1, {
     firstName: "Agus",
     lastName: "Ntoi",
@@ -84,7 +115,7 @@ updateData(9, {
     age: 30
 }) // expected output: data with id 9 not found
 
-
+console.log('\n--- Test DELETE data ---')
 deleteData(1) /* expected output :
                     data with id 1 was deleted
                     new data: 
