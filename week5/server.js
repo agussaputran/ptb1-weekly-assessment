@@ -19,8 +19,9 @@ const getProfileById = async (req, res, next) => {
     try {
         // mock retrieval of a real DB with async/await
         const profiles = await db;
-        console.log()
-        res.status(200).send(profiles);
+        const record = findData(id);
+        if (!record) { res.status(400).send(`Record with id ${id} not found...`)}
+        else { res.send(record); }        
     } catch (err) {
         res.status(400).send(err);
     }
