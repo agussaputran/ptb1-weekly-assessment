@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-   
+    res.send(db)
 });
 
 
