@@ -1,6 +1,6 @@
 # 5th Week Backend Assessment
 Assignment checklist
-- [x] Create a function to find, update and delete data.
+- [x] Create a function to find, update and delete data. see: [a relative link](week5/index.js)
 - [x] Create an API to get all data provided
 
 **Deadline**: Sunday, 7 November 2021, 12:00 WIB (12 siang)
