@@ -1,21 +1,97 @@
 # 5th Week Backend Assessment
-In this assessment, you must complete 2 exercises :
-- You have to create a function to find, update and delete data.
-- You have to create an API to get all data provided
+Assignment checklist
+- [x] Create a function to find, update and delete data.
+- [x] Create an API to get all data provided
 
 **Deadline**: Sunday, 7 November 2021, 12:00 WIB (12 siang)
 
 ## Instructions
-- Create new branch (if you already have your branch in this remote repository, update your branch by type ***git pull origin main***) from your branch
-- after your branch updated, in terminal you have to go to week5 folder(cd week5) (where the package.json file located)
-- type ```npm i``` on your terminal 
-- after installation process completed , try to run ```node server.js```
-- if the server running well, You can start doing the exercises on the index.js and server.js files  
+- Run ```npm i``` to install dependecies
+- Run ```npm start``` to start the server.
 
-## Assessment requirements
-- Create a function
-- function has a parameter
-- function has the appropriate process/logic
-- api to get all data  
-![title](images/ss2.png)
-- can run git properly, such as clone, pull, create new branch, push branch
+Server should be started on port 8000
+
+## API
+### GET
+```GET /profile``` to retrieve all records in the database.
+
+Respond:
+```json
+{
+  "code": 200,
+  "status": "Ok",
+  "data": [
+    {
+      "id": 2,
+      "firstName": "Arman",
+      "lastName": "Maulana",
+      "age": 50
+    },
+    {
+      "id": 3,
+      "firstName": "Raisa",
+      "lastName": "Adriana",
+      "age": 31
+    },
+    {
+      "id": 4,
+      "firstName": "Isyana",
+      "lastName": "Sarasvati",
+      "age": 28
+    },
+    {
+      "id": 5,
+      "firstName": "Nazril",
+      "lastName": "Irham",
+      "age": 40
+    }
+  ]
+}
+
+```
+
+```GET /profile/:id``` to retrieve 1 record from the database.
+
+Response:
+```json
+{
+  "record": {
+    "id": 2,
+    "firstName": "Arman",
+    "lastName": "Maulana",
+    "age": 50
+  },
+  "msg": "Record with id 2 found!"
+}
+```
+
+### PUT
+```PUT /profile/:id``` to update 1 record in the database.
+
+Request body:
+```json
+{
+    "firstName": "Jhon",
+    "lastName": "Maulana",
+    "age": 50
+}
+```
+
+Response:
+```json
+{
+  "record": {
+    "id": 2,
+    "firstName": "Jhon",
+    "lastName": "Maulana",
+    "age": 50
+  },
+  "msg": "Record with id 2 was updated!"
+}
+```
+
+
+### DELETE
+```DELETE /profile/:id``` to delete 1 record in the database.
+
+Response should be updated (all) records in the database

@@ -1,6 +1,6 @@
-const data = require("./db/data")
+const db = require("./db/data")
 
-console.log("original data: \n", data)
+console.log("original data: \n", db)
 /* 
 output:
  original data: 
@@ -17,15 +17,21 @@ output:
 const findData = (id) => {
     // in this function you have to find data in data provided with id from param
     // if the data doesn't exist then just print data not found
-    const record = data.find((item) => item.id === parseInt(id));
-    if (!record) {
-        console.log(`Record with id ${id} NOT found.`)
-    } else {
-        console.log(`Record with id ${id} found!`, record)
+    try {
+        const data = db;
+        const record = data.find((item) => item.id === parseInt(id));
+        const obj = new Object
+        obj.record = record
+        if (!obj.record) {
+            obj.msg = `Record with id ${id} NOT found.`
+        } else {
+            obj.msg = `Record with id ${id} found!`
+        }
+        console.log(obj.msg, obj.record)
+        return obj;
+    } catch (err) {
+        console.log(err.message)
     }
-    
-    return record;
-
 }
 
 // function to update data in object array base on param id
@@ -45,18 +51,23 @@ const updateData = (id, newData) => {
     // if the second parameter does not have any of the appropriate properties(firstName,lastName,age) then
     // just print "the object structure in the second parameter does not match with db in data.js"
     // if the data doesn't exist then just print data not found
-    const record = findData(id);
-    if (!record) {
-        console.log(`Record with id ${id} NOT updated...`)
+    const obj = findData(id);
+    // const obj = new Object
+    // obj.record = record
+    if (!obj.record) {
+        obj.msg = `Record with id ${id} NOT updated.`
     } else if (typeof newData !== 'object') {
-        console.log(`Record with id ${id} NOT updated... The second parameter must be object.`)
+        obj.msg = `Record with id ${id} NOT updated. The second parameter must be object.`
+        obj.record = undefined
     } else if (!newData.hasOwnProperty('firstName') || !newData.hasOwnProperty('lastName') || !newData.hasOwnProperty('age')) {
-        console.log(`Record with id ${id} NOT updated... The object structure in the second parameter does not match with db in data.js.`)
+        obj.msg = `Record with id ${id} NOT updated. The object structure in the second parameter does not match with db in data.js.`
+        obj.record = undefined
     } else {
-        Object.assign(record, newData)
-        console.log(`Record with id ${id} was updated! Record after update:`, record)
+        Object.assign(obj.record, newData)
+        obj.msg = `Record with id ${id} was updated!`
     }
-    return record;
+    console.log(obj.msg)
+    return obj;
 
 }
 
@@ -65,19 +76,21 @@ const deleteData = (id) => {
     // you have to delete data with the appropriate id of param
     // if the data doesn't exist then just print data not found
 
-    const record = findData(id);
-    if (!record) {
-        console.log(`Record with id ${id} NOT deleted...`)
+    const obj = findData(id);
+    if (!obj.record) {
+        // obj.msg = `Record with id ${id} NOT deleted...`
+        // console.log(obj.msg)
     } else {
-        const index = data.indexOf(record);
-        data.splice(index, 1);
-        console.log(`Record with id ${id} deleted.`)
-        console.log('Current database after deletion:', data)
+        const index = db.indexOf(obj.record);
+        db.splice(index, 1);
+        obj.msg = `Record with id ${id} was deleted.`
+        console.log('Current database after deletion:', db)
     }
-    return record
+
+    return obj.data = db
 }
 
-console.log('\n--- Test FIND data ---')
+console.log('---- TEST FIND DATA')
 findData(1)
 /* expected output :
                    data with id 1 found: 
@@ -86,7 +99,7 @@ findData(1)
 
 findData(9) // expected output : data with id 9 not found
 
-console.log('\n--- Test UPDATE data ---')
+console.log('\n---- TEST UPDATE DATA')
 updateData(1, {
     firstName: "Agus",
     lastName: "Ntoi",
@@ -115,7 +128,8 @@ updateData(9, {
     age: 30
 }) // expected output: data with id 9 not found
 
-console.log('\n--- Test DELETE data ---')
+
+console.log('\n---- TEST DELETE DATA')
 deleteData(1) /* expected output :
                     data with id 1 was deleted
                     new data: 
