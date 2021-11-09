@@ -1,7 +1,7 @@
 # 5th Week Backend Assessment
 In this assessment, you must complete 2 exercises :
 - create database with a structure like the one below and its relationships
-  ![title](./dbdesign.png)
+  ![title](dbdesign.png)
 - create crud API at least for 1 table. for example API to get, post, patch/put, and delete provinces
 
 **Deadline**: Sunday, 14 November 2021, 12:00 WIB (12 siang)
