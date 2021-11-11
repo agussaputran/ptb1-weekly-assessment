@@ -1,3 +1,9 @@
+// overall sudah bagus dan berjalan dengan baik
+// tambahan mungkin jika ingin bekerja dengan banyak file
+// bisa di manage dengan pembuatan folder sendiri
+// contohnya untuk file router harusnya di tempatkan pada folder sendiri
+// agar lebih rapi dan tertata
+// bisa explore "design pattern" pada nodejs express
 const express = require("express");
 const app = express()
 const router = require("./router")

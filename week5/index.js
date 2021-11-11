@@ -32,6 +32,10 @@ const findData = (id) => {
     } catch (err) {
         console.log(err.message)
     }
+    // ==== INPUT =====
+    // overall sudah bagus , hanya saja dengan case simple seperti ini 
+    // bisa diselesaikan dengan perulangan biasa atau dengan langsung pada 1 built in function
+    // perlu diinget banyaknya deklarasi variabel baru akan menambah memory yang digunakan
 }
 
 // function to update data in object array base on param id
@@ -68,6 +72,8 @@ const updateData = (id, newData) => {
     }
     console.log(obj.msg)
     return obj;
+    // logic yang digunakan sudah benar
+    // dan ditambahkan dengan pemanfaatan fungsi findData
 
 }
 
@@ -80,11 +86,17 @@ const deleteData = (id) => {
     if (!obj.record) {
         // obj.msg = `Record with id ${id} NOT deleted...`
         // console.log(obj.msg)
+        // ======== PESAN ============
+        // apa action pada kondisi ini  ?
     } else {
         const index = db.indexOf(obj.record);
         db.splice(index, 1);
         obj.msg = `Record with id ${id} was deleted.`
         console.log('Current database after deletion:', db)
+        // ======== PESAN ============
+        // sudah bagus dalam penggunaan built in function
+        // mungkin bisa di explore built in function yang lain untuk case seperti ini
+        // dan kalau bisa dipahami apa yang terjadi di built in function yang digunakan
     }
 
     return obj.data = db
