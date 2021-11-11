@@ -1,25 +1,41 @@
-ALTER TABLE districts
-ADD CONSTRAINT fk_provinces
-FOREIGN KEY (province_id)
-REFERENCES provinces(id)
-ON DELETE CASCADE;
+DROP TABLE IF EXISTS provinces CASCADE;
+DROP TABLE IF EXISTS districts CASCADE;
+DROP TABLE IF EXISTS regencies CASCADE;
+DROP TABLE IF EXISTS sub_districts CASCADE;
 
--- Bikin table districts
-CREATE TABLE IF NOT EXISTS districts (id integer NOT NULL, province_id integer NOT NULL, name varchar(255), created_at timestamp, updated_at timestamp, deleted_at timestamp);
--- tambah primary key
-ALTER TABLE districts ADD PRIMARY KEY (id); 
--- tambah foreign key
-ALTER TABLE districts                                                                                                                    ADD CONSTRAINT fk_provinces
-FOREIGN KEY (province_id)
-REFERENCES provinces(id)
-ON DELETE CASCADE;
+-- create 'provinces' table
+CREATE TABLE IF NOT EXISTS provinces (
+	id serial PRIMARY KEY,
+	name VARCHAR (255) UNIQUE NOT NULL,
+    created_at timestamp,
+    updated_at timestamp,
+    deleted_at timestamp ,
+);
 
--- Bikin table sub_districts
-CREATE TABLE IF NOT EXISTS sub_districts (id integer NOT NULL, district_id integer NOT NULL, name varchar(255), created_at timestamp, updated_at timestamp, deleted_at timestamp);
--- tambah primary key
-ALTER TABLE sub_districts ADD PRIMARY KEY (id);
--- tambah foreign key
-ALTER TABLE sub_districtsADD CONSTRAINT fk_districts
-FOREIGN KEY (district_id)REFERENCES districts(id)
-ON DELETE CASCADE;
-ALTER TABLE
+
+-- create 'districts' table
+CREATE TABLE IF NOT EXISTS districts (
+	id serial PRIMARY KEY,
+    province_id integer,
+	name VARCHAR (255) UNIQUE NOT NULL,
+    created_at timestamp,
+    updated_at timestamp,
+    deleted_at timestamp ,
+    FOREIGN KEY (province_id)
+        REFERENCES provinces(id)
+        ON DELETE CASCADE
+);
+
+-- create 'regencies' table
+CREATE TABLE IF NOT EXISTS regencies (
+	id serial PRIMARY KEY,
+    district_id integer,
+	name VARCHAR (255) UNIQUE NOT NULL,
+    created_at timestamp,
+    updated_at timestamp,
+    deleted_at timestamp ,
+    FOREIGN KEY (district_id)
+        REFERENCES districts(id)
+        ON DELETE CASCADE
+);
+

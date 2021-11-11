@@ -15,6 +15,8 @@
 
 -- Create Database "indonesia";
 
+-- sudo ss -lptn 'sport = :8000'
+
 DROP DATABASE IF EXISTS indonesia;
 
 Create Database "indonesia";

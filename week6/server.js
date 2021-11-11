@@ -1,8 +1,8 @@
 require('dotenv').config()
 const express = require("express");
 const app = express()
-const db = require('./database/connection')
 const PORT = process.env.PORT
+const db = require('./database/connection')
 
 // routers
 const provinceRoute = require("./router/province")
