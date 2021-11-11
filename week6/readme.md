@@ -48,7 +48,7 @@ Respond:
 
 ```GET /province/?id=12``` to get province by Id
 
-Response:
+Respond:
 ```json
 {
   "id": 12,
@@ -62,7 +62,7 @@ Response:
 ### PUT
 ```PUT /province/?id=12&name=SULAWESI SELATAN``` to update province name by Id
 
-Request body:
+Respond:
 ```json
 {
   "id": 12,
@@ -76,7 +76,7 @@ Request body:
 ### DELETE
 ```DELETE /province/?id=11``` to delete province by Id
 
-Request body:
+Respond:
 ```json
 {
   "id": 11,
