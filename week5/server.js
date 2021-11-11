@@ -1,3 +1,6 @@
+// overall sudah bagus dan berjalan dengan baik
+// mungkin bisa ditambahkan keterangan untuk memperjelas hasil responsenya
+// bisa dilihat pada contoh gambar di readme
 const express = require("express");
 const db = require("./db/data")
 

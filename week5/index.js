@@ -16,14 +16,18 @@ output:
 // function to find data in object array
 const findData = (id) => {
     // in this function you have to find data in data provided with id from param
-    console.log(`data with id ${id} found:`)
+    console.log(`data with id ${id} found:`) // ==== INPUT ==== pesan ini harusnya di munculkan pada saat data ditemukan
     data.filter(user => {
         if(user.id == id) {
             console.log(user)
         } 
     })
     // if the data doesn't exist then just print data not found
-    if(id > data.length){
+    // ==== INPUT ====
+    // logic kurang tepat jika id pada data tidak berurutan atau acak maka hasilnya tidak akan sesuai
+    // contoh length data 5 [100,20,30,50,95], id yang di cari 1 , 
+    // maka pesan data not found tetap tidak akan muncul
+    if(id > data.length){ 
         console.log(`Test data with id ${id} not found`)
     }
     console.log('____________________________________________________')
@@ -46,9 +50,17 @@ const updateData = (id, newData) => {
     // divalidasi dl, bila semua sudah terpenuhi baru diupdate datanya
     if(typeof newData === 'object' && newData !== null){
         if(newData.firstName && newData.lastName && newData.age){
-            if(id < data.length){
+        // ======= INPUT ======= 
+        // logic kurang tepat. apabila ada data dengan length 3
+        // namun terdapat id 105 misal. maka data tidak akan terupdate
+        // karna perbandingannya hanya dengan panjang data bukan dengan data didalamnya
+        // bisa coba menggunakan perulangan untuk mengecek setiap data didalamnya
+            if(id < data.length){ // atau pengecekan ini bisa dihilangkan
+                // karena dengan array.filter sudah cukup
+                // opsi lain bisa dengan menggunakan perulangan biasa
+                // maupun built in function lainnya
                 data.filter(user => {
-                    if(user.id == id) {
+                    if(user.id == id) { // dam karna disini sudah ada if nya maka dibawahnya bisa ditambahkan else dengan pesan data not found
                         user.id = id
                         user.firstName = newData.firstName
                         user.lastName = newData.lastName
@@ -76,7 +88,8 @@ const updateData = (id, newData) => {
     }
     // if the data doesn't exist then just print data not found
     // console.log(`data with id ${id} not found`)
-    if(id > data.length){
+    // === INPUT ====
+    if(id > data.length){ // sama seperti pada findData
         console.log(`Test data with id ${id} not found`)
     }
     console.log('____________________________________________________')
@@ -85,7 +98,7 @@ const updateData = (id, newData) => {
 const deleteData = (id) => {
     // in this function
     // you have to delete data with the appropriate id of param
-    console.log(`data with id ${id} was deleted`)
+    console.log(`data with id ${id} was deleted`) // ===== INPUT ===== sama seperti findData
     console.log('new data:')
     data.filter(user => {
         if(user.id == id) {
@@ -94,14 +107,15 @@ const deleteData = (id) => {
         } 
     })
     // if the data doesn't exist then just print data not found
-    if(id > data.length){
+    // ==== INPUT ====
+    if(id > data.length){ // sama seperti pada findData
         console.log(`Test data with id ${id} not found`)
     }
     console.log('____________________________________________________')
     // if the data doesn't exist then just print data not found
 }
 
-findData(1)    
+findData(105)    
  /* expected output :
                     data with id 1 found: 
                         { id: 1, firstName: 'Agus', lastName: 'Saputra', age: 24 }
@@ -110,7 +124,7 @@ findData(1)
 // findData(9) // expected output : data with id 9 not found
 
 
-updateData(1, {
+updateData(105, {
     firstName: "Agus",
     lastName: "Ntoi",
     age: 30
