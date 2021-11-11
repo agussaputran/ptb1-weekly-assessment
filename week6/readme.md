@@ -1,7 +1,8 @@
 # 5th Week Backend Assessment
 Assignment checklist
-- [x] Create a function to find, update and delete data. See: [index,js](index.js)
-- [x] Create an API to get all data provided
+- [x] create database with a structure like the one below and its relationships
+  ![title](dbdesign.png)
+- [x] create crud API at least for 1 table. for example API to get, post, patch/put, and delete provinces
 
 **Deadline**: Sunday, 7 November 2021, 12:00 WIB (12 siang)
 
