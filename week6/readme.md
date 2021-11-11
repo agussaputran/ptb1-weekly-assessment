@@ -1,10 +1,11 @@
-# 5th Week Backend Assessment
+# 6th Week Backend Assessment
 Assignment checklist
 - [x] create database with a structure like the one below and its relationships
-  ![title](dbdesign.png)
+  ![title](img/dbdesign.png)
+  ![title](img/provinces.png)
+  ![title](img/regencies.png)
+  ![title](img/districts.png)
 - [x] create crud API at least for 1 table. for example API to get, post, patch/put, and delete provinces
-
-**Deadline**: Sunday, 7 November 2021, 12:00 WIB (12 siang)
 
 ## Instructions
 - Run ```npm i``` to install dependecies
