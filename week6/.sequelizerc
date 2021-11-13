@@ -1,0 +1,8 @@
+const path = require('path');
+// definisi folder mana yang kita pakai dengan sequelize
+module.exports = {
+  "config": path.resolve('./config', 'config.json'),
+  "models-path": path.resolve('./models'),
+  "seeders-path": path.resolve('./seeders'),
+  "migrations-path": path.resolve('./migrations')
+};
