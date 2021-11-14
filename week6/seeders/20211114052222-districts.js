@@ -11,12 +11,12 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('districts', [{
-      name: 'Gianyar',
-      province_id: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-      }], {});
+   await queryInterface.bulkInsert('Districts', [{
+    regencies_id:1,
+    name: 'Kuta',
+    createdAt: new Date(),
+    updatedAt: new Date()
+   }])
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -26,5 +26,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Districts', null, {})
   }
 };

@@ -1,11 +1,9 @@
-const Province = require('./provinces')
-
 'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class district extends Model {
+  class Regencies extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,16 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.hasOne(models.provinces, {foreignKey: 'province_id',sourceKey:'id'})
+      Regencies.belongsTo (models.Provinces, {
+        foreignKey: 'province_id',
+        onDelete: 'CASCADE'
+      }) 
+      Regencies.hasMany(models.Districts, {
+        foreignKey: 'regencies_id'
+      })
     }
   };
-  district.init({
+  Regencies.init({
     province_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    deleted_at: DataTypes.DATE
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'district',
+    modelName: 'Regencies',
   });
-  return district;
+  return Regencies;
 };

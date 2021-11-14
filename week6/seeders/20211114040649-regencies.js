@@ -1,7 +1,5 @@
 'use strict';
 
-const { DATE } = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -13,11 +11,12 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('provinces', [{
-      name: 'Bali',
-      createdAt: new Date(),
-      updatedAt: new Date()
-      }], {});
+   await queryInterface.bulkInsert('Regencies', [{
+     province_id: 1,
+     name: 'Badung Regency',
+     createdAt: new Date(),
+     updatedAt: new Date()
+   }] )
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -27,5 +26,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Regencies',null, {})
   }
 };

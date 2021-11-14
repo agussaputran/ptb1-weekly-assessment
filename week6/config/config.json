@@ -2,7 +2,7 @@
   "development": {
     "username": "roy",
     "password": "roy",
-    "database": "roy",
+    "database": "country",
     "host": "localhost",
     "dialect": "postgres",
     "port": 5432
