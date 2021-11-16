@@ -1,63 +1,8 @@
-// this is file to connect to DB
+\connect indonesia_2 postgres
 
-const { Pool, Client } = require('pg')
-// pools will use environment variables
-// for connection information
-
-const client = new Client()
-
-console.log(`resetting Database [ ${process.env.PGDATABASE} ]`)
-
-// reset database
-async function resetDb() {
-  await client.connect()
-  await client.query(createTableText)
-  await client.end()
-}
-
-// uncomment this to reset the database
-// resetDb()
-
-const pool = new Pool()
-
-module.exports = {
-  async query(text, params) {
-    const start = Date.now()
-    const res = await pool.query(text, params)
-    const duration = Date.now() - start
-    console.log('executed query', { text, duration, rows: res.rowCount })
-    return res
-  },
-  async getClient() {
-    const client = await pool.connect()
-    const query = client.query
-    const release = client.release
-    // set a timeout of 5 seconds, after which we will log this client's last query
-    const timeout = setTimeout(() => {
-      console.error('A client has been checked out for more than 5 seconds!')
-      console.error(`The last executed query on this client was: ${client.lastQuery}`)
-    }, 5000)
-    // monkey patch the query method to keep track of the last query executed
-    client.query = (...args) => {
-      client.lastQuery = args
-      return query.apply(client, args)
-    }
-    client.release = () => {
-      // clear our timeout
-      clearTimeout(timeout)
-      // set the methods back to their old un-monkey-patched version
-      client.query = query
-      client.release = release
-      return release.apply(client)
-    }
-    return client
-  }
-}
-
-const createTableText = `
 DROP TABLE IF EXISTS provinces CASCADE;
-DROP TABLE IF EXISTS regencies CASCADE;
 DROP TABLE IF EXISTS districts CASCADE;
+DROP TABLE IF EXISTS regencies CASCADE;
 DROP TABLE IF EXISTS sub_districts CASCADE;
 
 -- create 'provinces' table
@@ -142,5 +87,3 @@ INSERT INTO districts VALUES
   ('1275030', '1275', 'MEDAN AMPLAS'),
   ('1275040', '1275', 'MEDAN DENAI');
 COMMIT WORK;
-`
-
