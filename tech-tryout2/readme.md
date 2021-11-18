@@ -1,21 +1,4 @@
-# 6th Week Backend Assessment
-Assignment checklist
-- [x] create database with a structure like the one below and its relationships
-  ![title](img/dbdesign.png)
-
-  ![title](img/provinces.png)
-
-  ![title](img/regencies.png)
-
-  ![title](img/districts.png)
-- [x] create crud API at least for 1 table. for example API to get, post, patch/put, and delete provinces
-
-## API
-### GET
-create api to get province data by district id
-create api to get province data by sub district id
-create api to get list of district by province id
-create api to get list of sub district by province id
+# TECH-TRYOUT 2
 
 ## Instructions
 - Run ```npm i``` to install dependecies
@@ -24,6 +7,16 @@ create api to get list of sub district by province id
 
 Server should be started on port 8000
 
+## DATA BASE
+  ![title](img/dbdesign.png)
+
+  ![title](img/provinces.png)
+
+  ![title](img/regencies.png)
+
+  ![title](img/districts.png)
+
+## API
 ### Get province data by regency id
 ### ```GET api/province/?regencyId=3503```
 
