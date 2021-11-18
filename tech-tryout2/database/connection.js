@@ -4,19 +4,20 @@ const { Pool, Client } = require('pg')
 // pools will use environment variables
 // for connection information
 
-const client = new Client()
 
-console.log(`resetting Database [ ${process.env.PGDATABASE} ]`)
 
-// reset database
-async function resetDb() {
-  await client.connect()
-  await client.query(createTableText)
-  await client.end()
-}
+//----uncomment this to reset the database
+/*
+  const client = new Client()
 
-// uncomment this to reset the database
-// resetDb()
+  async function resetDb() {
+    await client.connect()
+    await client.query(resetTableQuery)
+    await client.end()
+  }
+  console.log(`resetting Database [ ${process.env.PGDATABASE} ]`)
+  resetDb()
+*/
 
 const pool = new Pool()
 
@@ -54,7 +55,7 @@ module.exports = {
   }
 }
 
-const createTableText = `
+const resetTableQuery = `
 DROP TABLE IF EXISTS provinces CASCADE;
 DROP TABLE IF EXISTS regencies CASCADE;
 DROP TABLE IF EXISTS districts CASCADE;
@@ -100,7 +101,11 @@ BEGIN WORK;
 LOCK TABLE provinces IN ACCESS EXCLUSIVE MODE;
 INSERT INTO provinces VALUES
   ('11', 'ACEH'),
-  ('12', 'SUMATERA UTARA');
+  ('12', 'SUMATERA UTARA'),
+  ('32', 'JAWA BARAT'),
+  ('33', 'JAWA TENGAH'),
+  ('34', 'DI YOGYAKARTA'),
+  ('35', 'JAWA TIMUR'),
 COMMIT WORK;
 
 BEGIN WORK;
@@ -111,7 +116,23 @@ INSERT INTO regencies VALUES
   ('1103', '11', 'KABUPATEN ACEH SELATAN'),
   ('1273', '12', 'KOTA PEMATANG SIANTAR'),
   ('1274', '12', 'KOTA TEBING TINGGI'),
-  ('1275', '12', 'KOTA MEDAN');
+  ('1275', '12', 'KOTA MEDAN'),
+
+  ('3201', '32', 'KABUPATEN BOGOR'),
+  ('3202', '32', 'KABUPATEN SUKABUMI'),
+  ('3203', '32', 'KABUPATEN CIANJUR'),
+
+  ('3301', '33', 'KABUPATEN CILACAP'),
+  ('3302', '33', 'KABUPATEN BANYUMAS'),
+  ('3303', '33', 'KABUPATEN PURBALINGGA'),
+
+  ('3401', '34', 'KABUPATEN KULON PROGO'),
+  ('3402', '34', 'KABUPATEN BANTUL'),
+  ('3403', '34', 'KABUPATEN GUNUNG KIDUL'),
+
+  ('3501', '35', 'KABUPATEN PACITAN'),
+  ('3502', '35', 'KABUPATEN PONOROGO'),
+  ('3503', '35', 'KABUPATEN TRENGGALEK'),
 COMMIT WORK;
 
 BEGIN WORK;
