@@ -15,6 +15,14 @@ module.exports = {
      name: 'Bali',
      createdAt: new Date(),
      updatedAt: new Date(),
+   }, {
+    name: 'Bandung',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+   }, {
+    name: 'Jakarta',
+    createdAt: new Date(),
+    updatedAt: new Date(),
    }], {});
   },
 

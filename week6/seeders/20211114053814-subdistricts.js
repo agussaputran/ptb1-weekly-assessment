@@ -16,7 +16,83 @@ module.exports = {
      name: "Legian",
      createdAt: new Date(),
      updatedAt: new Date()
-   }])
+   },{
+    districts_id: 1,
+    name: "Kuta",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 1,
+    name: "Tuban",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 1,
+    name: "Kedonganan",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 1,
+    name: "Seminyak",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 2,
+    name: "Abianbase",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 2,
+    name: "Kapal",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 2,
+    name: "Lukluk",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 2,
+    name: "Sading",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 2,
+    name: "Sempidi",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 5,
+    name: "Pecatu",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 5,
+    name: "Ungasan",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 5,
+    name: "Kutuh",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 6,
+    name: "Canggu",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 6,
+    name: "Dalung",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   },{
+    districts_id: 6,
+    name: "Tibubeneng",
+    createdAt: new Date(),
+    updatedAt: new Date()
+   }
+  ])
   },
 
   down: async (queryInterface, Sequelize) => {

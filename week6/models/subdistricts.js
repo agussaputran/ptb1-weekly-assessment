@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      SubDistricts.belongsTo(models.Regencies, {
+      SubDistricts.belongsTo(models.Districts, {
         foreignKey: 'districts_id',
         onDelete: 'CASCADE'
       })
