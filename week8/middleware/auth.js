@@ -1,1 +1,0 @@
-// this file should have a middleware to handle auth

@@ -1,16 +1,19 @@
+require('dotenv').config()
 const express = require("express");
 const app = express()
+const PORT = process.env.PORT
+const routerApi = require("./router")
 
-// routers
-// const offices = require("./router/offices")
 
 app.get("/", (req, res) => {
     res.status(200).send("Welcome to profile api")
 });
 
-// app.use("/offices", offices)
+// app.use('/', (req, res) => res.redirect('/province'))
+
+app.use("/api", routerApi)
 
 
-app.listen(8000, () => {
-    console.log(`server is listening on http://localhost:8000`);
-  });
+app.listen(PORT, () => {
+    console.log(`server is listening on http://localhost:${PORT}`);
+});
