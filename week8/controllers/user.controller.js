@@ -154,17 +154,15 @@ exports.welcome = (req, res) => {
     res.status(200).send(`Welcome ${req.user.first_name} 🙌 `);
 };
 
-// Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
-
-};
-
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-
-};
-
-// Find all published Tutorials
-exports.findAllPublished = (req, res) => {
-
+// Find a single Tutorial with an id
+exports.render = async (req, res) => {
+    try {
+        const data = await User.findAll({ where: null, attributes: { exclude: ['password'] } })
+        res.render('users.view.ejs', { users: data });
+        // res.render('test.ejs', { users: data });  
+    } catch (err) {
+        res.status(400).send({
+            message: err.message
+        });
+    }
 };

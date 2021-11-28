@@ -4,6 +4,9 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new district
+  router.get("/render", districts.render);
+
+  // Create a new district
   router.post("/", districts.create);
 
   // Retrieve all district

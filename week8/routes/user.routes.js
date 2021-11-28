@@ -8,6 +8,9 @@ module.exports = app => {
     // Retrieve all Users
     router.get("/", user.findAll);
 
+    // render users
+    router.get("/render", user.render);
+
     // User welcome
     router.get("/welcome", auth, user.welcome);
 
@@ -22,6 +25,8 @@ module.exports = app => {
 
     // User sign-in by email
     router.post("/auth/email", user.authEmail);
+
+
     
     app.use('/api/users', router);
   };

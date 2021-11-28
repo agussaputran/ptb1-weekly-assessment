@@ -5,7 +5,20 @@ const Province = db.provinces;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 
-// Create and Save a new Tutorial
+// render
+exports.render = async (req, res) => {
+  try {
+      const data = await District.findAll({ where: null, attributes: null })
+      res.render('districts.view.ejs', { data: data });
+      // res.render('test.ejs', { users: data });  
+  } catch (err) {
+      res.status(400).send({
+          message: err.message
+      });
+  }
+};
+
+// Create and Save a district
 exports.create = async (req, res) => {
   // Validate request
   if (isEmptyObject(req.query)) {

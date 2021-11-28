@@ -5,6 +5,8 @@ const PORT = process.env.PORT
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
+app.set('view engine', 'ejs');
+
 
 
 
@@ -185,6 +187,7 @@ require("./routes/province.routes")(app);
 require("./routes/regency.routes")(app);
 require("./routes/district.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/office.routes")(app);
 
 
 

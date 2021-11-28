@@ -3,6 +3,19 @@ const Province = db.provinces;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 
+// render
+exports.render = async (req, res) => {
+  try {
+      const data = await Province.findAll({ where: null, attributes: null })
+      res.render('provinces.view.ejs', { data: data });
+      // res.render('test.ejs', { users: data });  
+  } catch (err) {
+      res.status(400).send({
+          message: err.message
+      });
+  }
+};
+
 // Create a province
 exports.create = async (req, res) => {
   // Validate request

@@ -3,6 +3,20 @@ const Regency = db.regencies;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 
+// render
+exports.render = async (req, res) => {
+  try {
+      const data = await Regency.findAll({ where: null, attributes: null })
+      res.render('regencies.view.ejs', { data: data });
+      // res.render('test.ejs', { users: data });  
+  } catch (err) {
+      res.status(400).send({
+          message: err.message
+      });
+  }
+};
+
+
 // Create and Save a regency
 exports.create = async (req, res) => {
   // Validate request

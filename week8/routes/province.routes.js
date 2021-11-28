@@ -3,6 +3,9 @@ module.exports = app => {
 
   var router = require("express").Router();
 
+  // render province
+  router.get("/render", provinces.render);
+
   // Create a province
   router.post("/", provinces.create);
 

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+      table, th, td {
+          /* font-size: 90%; */
+          white-space : nowrap;
+      }
+  </style>
     <title>My New Website</title>
 </head>
 <body>
@@ -13,26 +19,28 @@
   </header>
 
   <main>
-    This is the homepage
-
-    <br />
-    <a href="/adduser">Add User page</a><br />
-    <a href="/signin">Sign-In page</a><br />
-    <a href="/protected">Protected Page (Need sign-in first!)</a><br />
-    <a href="/api/users/render">Print all users</a><br />
-    <a href="/api/provinces/render">Print all provinces</a><br />
-    <a href="/api/regencies/render">Print all regencies</a><br />
-    <a href="/api/districts/render">Print all districts</a><br />
-    <!-- <a href="/signout">Signout Page</a><br /> -->
-
-    <!-- <h1>The XMLHttpRequest Object</h1> -->
-    <br />
-    <br />
-
-    <button type="button" onclick="loadDoc()">Check Authentication</button>
-
-    <p id="status">Status</p>
-    <p id="text">Text</p>
+    <a href="/">Go back to home page</a>
+    <h1>Provinces</h1>
+    <table style="width:100">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created at</th>
+        </tr>
+        <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+                <td>
+                    <%= data[i].id %>
+                </td>
+                <td>
+                    <%= data[i].name %>
+                </td>
+                <td>
+                    <%= data[i].created_at %>
+                </td>
+            </tr>
+            <% } %>
+    </table>
  
   </main>
 

@@ -3,6 +3,9 @@ module.exports = app => {
 
   var router = require("express").Router();
 
+  // render
+  router.get("/render", regencies.render);
+
   // Create a new regency
   router.post("/", regencies.create);
 
