@@ -1,12 +1,3 @@
-# TECH-TRYOUT 2
-
-## Instructions
-- Run ```npm i``` to install dependecies
-- Run ```npm start``` to start the server.
-- Run ```npm db@reset``` to restore database to original state
-
-Server should be started on port 8000
-
 ## DATA BASE
   ![title](img/ER_diagram.png)
 
@@ -15,6 +6,13 @@ Server should be started on port 8000
   ![title](img/regencies.png)
 
   ![title](img/districts.png)
+
+## Instructions
+- Run ```npm i``` to install dependecies
+- Run ```npm start``` to start the server.
+- Run ```npm db@reset``` to restore database to original state
+
+Server should be started on port 8000
 
 ## API
 ### Get province data by regency id
