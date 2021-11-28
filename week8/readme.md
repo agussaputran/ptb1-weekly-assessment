@@ -10,7 +10,8 @@
 ## Instructions
 - Run ```npm i``` to install dependecies
 - Run ```npm start``` to start the server.
-- Run ```npm db@reset``` to restore database to original state
+- Run ```npm run db@reset``` to restore database to original state if using Linux
+- Run ```npm run db@resetwin``` to restore database to original state if using Windows powershell
 
 Server should be started on port 8000
 
