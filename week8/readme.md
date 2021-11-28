@@ -8,7 +8,7 @@
 Server should be started on port 8000
 
 ## DATA BASE
-  ![title](img/dbdesign.png)
+  ![title](img/ER_diagram.png)
 
   ![title](img/provinces.png)
 
