@@ -29,8 +29,10 @@ Simply sign-in using the below credentials:
 ![front-page](img/webpage/front-page.png)
 ## Add user
 ![add-user-page](img/webpage/add-user-page.png)
-## Protected page - need sign-in first
+## Protected page - without sign-in
 ![protected-page](img/webpage/protected-page.png)
+## Protected page - after sign-in (authenticated)
+![protected-page-authenticated](img/webpage/protected-page-authenticated.png)
 ## Sign-in page
 ![signin-page](img/webpage/signin-page.png)
 ## Sign-in with email
