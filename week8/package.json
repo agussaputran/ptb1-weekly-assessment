@@ -1,30 +1,45 @@
 {
   "name": "week8",
   "version": "1.0.0",
-  "description": "Assignment checklist - [x] create database with a structure like the one below and its relationships   ![title](img/dbdesign.png)   ![title](img/provinces.png)   ![title](img/regencies.png)   ![title](img/districts.png) - [x] create crud API at least for 1 table. for example API to get, post, patch/put, and delete provinces",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
     "db@drop": "psql postgresql://postgres:postgres@dbtest.cn50fuyfr3aa.ap-southeast-1.rds.amazonaws.com -c 'DROP DATABASE IF EXISTS indonesia_2;'",
-    "db@reset": "psql postgresql://postgres:postgres@dbtest.cn50fuyfr3aa.ap-southeast-1.rds.amazonaws.com -f ./database/reset-db.sql"
+    "db@reset": "psql postgresql://postgres:postgres@dbtest.cn50fuyfr3aa.ap-southeast-1.rds.amazonaws.com -f ./database/reset-db.sql",
+    "db@resetwin": "psql --file=./database/reset-db.sql -h dbtest.cn50fuyfr3aa.ap-southeast-1.rds.amazonaws.com -U postgres"
   },
   "nodemonConfig": {
-    "ignore": ["test/*", "docs/*"],
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
     "delay": 2000,
     "events": {
       "crash": "kill-port 8000"
     }
   },
-  "keywords": ["miq28"],
+  "keywords": [
+    "miq28"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.14",
-    "pg": "^8.7.1"
+    "passport": "^0.5.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0-alpha.1"
   },
   "devDependencies": {
     "kill-port": "^1.6.1"
