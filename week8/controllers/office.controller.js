@@ -57,22 +57,23 @@ exports.GetOfficesByUserId = async (req, res) => {
     try {
 
 
-const rawText = `
-WITH t AS (
-    select p.id AS prov_id, p.name AS prov_name
-    from users u
-    INNER JOIN districts d ON d.id = u.district_id
-    INNER JOIN regencies r ON r.id = d.regency_id
-    INNER JOIN provinces p ON p.id = r.province_id
-    where u.id = ${id}
- )
-select o.id, o.name AS office_name, p.name AS province
-from t, offices o
-INNER JOIN districts d ON d.id = o.district_id
-INNER JOIN regencies r ON r.id = d.regency_id
-INNER JOIN provinces p ON p.id = r.province_id
-WHERE p.id = t.prov_id;
-`
+        const rawText =
+            `
+            WITH t AS (
+                select p.id AS prov_id, p.name AS prov_name
+                from users u
+                INNER JOIN districts d ON d.id = u.district_id
+                INNER JOIN regencies r ON r.id = d.regency_id
+                INNER JOIN provinces p ON p.id = r.province_id
+                where u.id = ${id}
+            )
+            select o.id, o.name AS office_name, p.name AS province
+            from t, offices o
+            INNER JOIN districts d ON d.id = o.district_id
+            INNER JOIN regencies r ON r.id = d.regency_id
+            INNER JOIN provinces p ON p.id = r.province_id
+            WHERE p.id = t.prov_id;
+            `
         const [results, metadata] = await sequelize.query(rawText)
         res.send(results)
     } catch (err) {
