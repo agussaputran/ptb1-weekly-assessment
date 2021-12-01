@@ -1,6 +1,8 @@
 const dbConfig = require("../config/db.config.js");
 
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
+// require('sequelize-hierarchy')(Sequelize);
+// const Sequelize = require('sequelize-hierarchy')();
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
@@ -33,10 +35,17 @@ db.users = require("./user.model.js")(sequelize, Sequelize);
 // A.hasMany(B, { /* options */ });
 // A.belongsToMany(B, { through: 'C', /* options */ });
 
+db.provinces.hasMany(db.regencies, {foreignKey: 'province_id', onDelete: 'CASCADE'});
+// db.regencies.belongsTo(db.provinces, {foreignKey: 'province_id'})
+
 db.regencies.hasMany(db.districts, {foreignKey: 'regency_id', onDelete: 'CASCADE'});
 db.districts.belongsTo(db.regencies, {foreignKey: 'regency_id'})
 
-db.provinces.hasMany(db.regencies, {foreignKey: 'province_id', onDelete: 'CASCADE'});
-db.regencies.belongsTo(db.provinces, {foreignKey: 'province_id'})
+db.districts.hasMany(db.offices, {foreignKey: 'district_id', onDelete: 'CASCADE'});
+db.offices.belongsTo(db.districts, {foreignKey: 'district_id'})
+
+db.districts.hasMany(db.users, {foreignKey: 'district_id', onDelete: 'CASCADE'});
+
+
 
 module.exports = db;

@@ -3,11 +3,17 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Retrieve all Users
+  // Retrieve all offices
   router.get("/", office.findAll);
 
-  // Retrieve 1 user
+  // Retrieve all offices
+  router.get("/", office.findAll);
+
+  // Retrieve 1 office
   router.get("/:id", office.findOne);
+
+  // Retrieve offices in a province based on user Id
+  router.get("/scope/province/reff/user/:id", office.GetOfficesByUserId);
 
   app.use('/api/offices', router);
 };

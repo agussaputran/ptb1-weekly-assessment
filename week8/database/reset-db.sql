@@ -1,4 +1,6 @@
-\connect indonesia_2 postgres
+-- CREATE DATABASE IF NOT EXISTS indonesia_2;
+
+\connect indonesia_2
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS offices CASCADE;
@@ -347,8 +349,8 @@ BEGIN WORK;
 LOCK TABLE users IN ACCESS EXCLUSIVE MODE;
 INSERT INTO users VALUES
   (DEFAULT, 1101010, 'admin', 'admin', 'admin@admin.com', '$2a$10$e/UN0TNvdKqfsyl3VUV.bOlel8NONM/K4Uc/f2xr0BxEE9s6Eam.6'), -- pass: admin
-  (DEFAULT, 1101020, 'mod', 'mod', 'mod@mod.com', '$2a$10$gdeAa0kfprzsPYlKOjbPN.PVLxovOVbM35UnyL3IqiPGdfjJVwIeq'), -- pass: mod
-  (DEFAULT, 1101020, 'user', 'user', 'user@user.com', '$2a$10$v/dLYQlcDP0O.5FqA9Ux/eyhYpdqrj8Lmi0VylkIGbuBYIVRqNGOa');  -- pass: user
+  (DEFAULT, 3203010, 'mod', 'mod', 'mod@mod.com', '$2a$10$gdeAa0kfprzsPYlKOjbPN.PVLxovOVbM35UnyL3IqiPGdfjJVwIeq'), -- pass: mod
+  (DEFAULT, 7303020, 'user', 'user', 'user@user.com', '$2a$10$v/dLYQlcDP0O.5FqA9Ux/eyhYpdqrj8Lmi0VylkIGbuBYIVRqNGOa');  -- pass: user
 COMMIT WORK;
 
 

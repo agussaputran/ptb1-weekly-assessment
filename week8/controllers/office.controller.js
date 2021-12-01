@@ -1,5 +1,9 @@
+const { QueryTypes } = require('sequelize');
 const db = require("../models");
-const dbModel = db.offices;
+const sequelize = db.sequelize;
+const Office = db.offices;
+const District = db.districts;
+const Regency = db.regencies;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 const bcrypt = require("bcryptjs");
@@ -21,7 +25,7 @@ exports.findAll = async (req, res) => {
     }
 
     try {
-        const data = await dbModel.findAll({ where: condition, attributes: { exclude: ['password'] } })
+        const data = await Office.findAll({ where: condition, attributes: { exclude: ['password'] } })
         res.send(data);
     } catch (err) {
         res.status(400).send({
@@ -32,13 +36,13 @@ exports.findAll = async (req, res) => {
 
 };
 
-// Find a single Tutorial with an id
+// Find a single office based on Id
 exports.findOne = async (req, res) => {
     const id = req.params.id;
     var condition = id ? { id: id } : null;
 
     try {
-        const data = await dbModel.findByPk(id);
+        const data = await Office.findByPk(id);
         if (data) return res.send(data)
         return res.status(400).send('User not exist')
     } catch (err) {
@@ -47,8 +51,36 @@ exports.findOne = async (req, res) => {
 };
 
 // Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
+exports.GetOfficesByUserId = async (req, res) => {
+    const id = req.params.id;
 
+    try {
+
+
+const rawText = `
+WITH t AS (
+    select p.id AS prov_id, p.name AS prov_name
+    from users u
+    INNER JOIN districts d ON d.id = u.district_id
+    INNER JOIN regencies r ON r.id = d.regency_id
+    INNER JOIN provinces p ON p.id = r.province_id
+    where u.id = ${id}
+ )
+select o.id, o.name AS office_name, p.name AS province
+from t, offices o
+INNER JOIN districts d ON d.id = o.district_id
+INNER JOIN regencies r ON r.id = d.regency_id
+INNER JOIN provinces p ON p.id = r.province_id
+WHERE p.id = t.prov_id;
+`
+        const [results, metadata] = await sequelize.query(rawText)
+        res.send(results)
+    } catch (err) {
+        res.status(400).send({
+            message:
+                err.message || "Some error occurred while retrieving users."
+        });
+    }
 };
 
 // Delete all Tutorials from the database.
