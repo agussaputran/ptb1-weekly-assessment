@@ -17,7 +17,14 @@ module.exports = (sequelize, Sequelize) => {
       updated_at: {
         type: Sequelize.DATE
       }
-    });
+    }, {});
+
+    Office.associate = function(models) {
+      // associations can be defined here
+      Office.belongsTo(models.district, {
+        foreignKey: 'district_id'
+      })
+    };
   
     return Office;
   };

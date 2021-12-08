@@ -157,7 +157,7 @@ app.get('/auth/email', (req, res) => {
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 
 app.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.send(`Hello ${req.user.email}, you are now authenticated.`)
+    res.send(`Hello ${req.user.first_name} ${req.user.last_name}, you are now authenticated.`)
 })
 
 app.get('/google/callback', passport.authenticate('google'), (req, res) => {

@@ -12,8 +12,11 @@ module.exports = app => {
   // Retrieve 1 office
   router.get("/:id", office.findOne);
 
-  // Retrieve offices in a province based on user Id
+  // Get offices in a province based on user Id
   router.get("/scope/province/reff/user/:id", office.GetOfficesByUserId);
+
+  // Get an office by district Id
+  router.get("/scope/province/reff/district/:id", office.GetOneOfficeByDistrictId);
 
   app.use('/api/offices', router);
 };

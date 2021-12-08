@@ -1,5 +1,5 @@
 const db = require("../models");
-const Province = db.provinces;
+const Province = db.province;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 

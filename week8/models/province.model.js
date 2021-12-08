@@ -1,9 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Province = sequelize.define("province", {
-      // id: {
-      //   type: Sequelize.INTEGER,
-      //   primaryKey: true
-      // },
       name: {
         type: Sequelize.STRING
       },
@@ -13,7 +9,17 @@ module.exports = (sequelize, Sequelize) => {
       updated_at: {
         type: Sequelize.DATE
       }
-    });
+    }, {});
+
+    Province.associate = function(models) {
+      // associations can be defined here
+      Province.hasMany(models.regency, {
+        foreignKey: 'province_id',
+        onDelete: 'CASCADE'
+      })
+    };
+
+    // console.log(models)
   
     return Province;
   };

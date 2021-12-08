@@ -1,7 +1,7 @@
 const db = require("../models");
-const District = db.districts;
-const Regency = db.regencies;
-const Province = db.provinces;
+const District = db.district;
+const Regency = db.regencie;
+const Province = db.province;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 

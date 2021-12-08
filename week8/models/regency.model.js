@@ -6,10 +6,10 @@ module.exports = (sequelize, Sequelize) => {
       province_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        // references: {
-        //   model: 'province',
-        //   key: 'id'
-        // }
+        references: {
+          model: 'province',
+          key: 'id'
+        }
       },
       created_at: {
         type: Sequelize.DATE
@@ -17,7 +17,20 @@ module.exports = (sequelize, Sequelize) => {
       updated_at: {
         type: Sequelize.DATE
       }
-    });
+    }, {});
+
+    Regency.associate = function(models) {
+      // associations can be defined here
+      Regency.belongsTo(models.province, {
+        foreignKey: 'province_id'
+      }),
+      Regency.hasMany(models.district, {
+        foreignKey: 'regency_id',
+        onDelete: 'CASCADE'
+      })
+    };
+
+    // console.log(db)
 
     return Regency;
   };

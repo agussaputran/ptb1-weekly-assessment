@@ -1,9 +1,10 @@
 const { QueryTypes } = require('sequelize');
 const db = require("../models");
 const sequelize = db.sequelize;
-const Office = db.offices;
-const District = db.districts;
-const Regency = db.regencies;
+const Office = db.office;
+const District = db.district;
+const Regency = db.regency;
+const Province = db.province;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 const bcrypt = require("bcryptjs");
@@ -50,13 +51,10 @@ exports.findOne = async (req, res) => {
     }
 };
 
-// Delete a Tutorial with the specified id in the request
 exports.GetOfficesByUserId = async (req, res) => {
-    const id = req.params.id;
+    const user_id = req.params.id;
 
     try {
-
-
         const rawText =
             `
             WITH t AS (
@@ -65,7 +63,7 @@ exports.GetOfficesByUserId = async (req, res) => {
                 INNER JOIN districts d ON d.id = u.district_id
                 INNER JOIN regencies r ON r.id = d.regency_id
                 INNER JOIN provinces p ON p.id = r.province_id
-                where u.id = ${id}
+                where u.id = ${user_id}
             )
             select o.id, o.name AS office_name, p.name AS province
             from t, offices o
@@ -77,11 +75,51 @@ exports.GetOfficesByUserId = async (req, res) => {
         const [results, metadata] = await sequelize.query(rawText)
         res.send(results)
     } catch (err) {
-        res.status(400).send({
-            message:
-                err.message || "Some error occurred while retrieving users."
-        });
+        res.status(400).send({ message: err.message });
     }
+};
+
+exports.GetOneOfficeByDistrictId = async (req, res) => {
+
+    var condition, attributes, include
+
+    if (isEmptyObject(req.params)) {
+        return res.status(400).send({ message: "Bad query. Missing district Id"});
+    }
+
+    condition = {
+        "district_id": Number(req.params.id)
+    }
+
+    attributes = null
+
+    include = {
+        model: District,
+        include: {
+            model: Regency,
+            include: {
+                model: Province
+            }
+        }
+    }
+
+    include = {
+        model: District,
+        include: {
+            model: Regency,
+            include: {
+                model: Province
+            }
+        }
+    }
+
+    try {
+        const data = await Office.findAll({ where: condition, attributes: attributes, include: include })
+        res.send(data);
+    } catch (err) {
+        res.status(400).send({ message: err.message });
+    }
+
 };
 
 // Delete all Tutorials from the database.

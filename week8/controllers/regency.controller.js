@@ -1,5 +1,5 @@
 const db = require("../models");
-const Regency = db.regencies;
+const Regency = db.regency;
 const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 
