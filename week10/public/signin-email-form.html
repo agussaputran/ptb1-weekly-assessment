@@ -24,19 +24,21 @@
  
             <p>
                 <label>Email</label><br>
-                <input type="text" name="email">
+                <input type="text" name="email" value="mod@mod.com">
                 <!-- <input type="email" name="email" required=""> -->
             </p>
 
             <p>
                 <label>Password</label><br>
-                <input type="password" name="password" required="">
+                <input type="password" name="password" value="mod" required="">
             </p>
 
             <button type="submit" form="form1" value="Submit">Send</button>
             <button type="reset">Reset</button>
             <button disabled="disabled">Disabled</button>
         </form>
+
+        <p id="log">Log</p>
 
     </main>
 
@@ -47,10 +49,10 @@
 <script>
     function logSubmit(event) {
         log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`;
-        event.preventDefault();
+        // event.preventDefault();
     }
 
-    const form = document.getElementById('form');
+    const form = document.getElementById('form1');
     const log = document.getElementById('log');
     form.addEventListener('submit', logSubmit);
 </script>

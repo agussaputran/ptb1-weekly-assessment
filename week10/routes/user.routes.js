@@ -1,4 +1,5 @@
 const auth = require("../middleware/auth");
+const passport = require('passport');
 
 module.exports = app => {
     const user = require("../controllers/user.controller.js");
@@ -24,7 +25,7 @@ module.exports = app => {
     router.post("/signin", user.signin);
 
     // User sign-in by email
-    router.post("/auth/email", user.authEmail);
+    router.post("/auth/email", passport.authenticate('local', { failureRedirect: '/login' }), user.authEmail);
 
 
     

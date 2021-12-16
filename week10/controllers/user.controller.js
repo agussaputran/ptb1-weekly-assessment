@@ -4,6 +4,7 @@ const Op = db.Sequelize.Op;
 const { isEmptyObject } = require("../utils")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const passport = require('passport');
 
 // Retrieve all Tutorials from the database.
 exports.findAll = async (req, res) => {
@@ -117,12 +118,9 @@ exports.authEmail = async (req, res) => {
         // Get user input
         const { email, password } = req.body;
 
-        // Validate user input
-        if (!(email && password)) {
-            res.status(400).send("All input is required");
-        }
-        // Validate if user exist in our database
-        const user = await User.findOne({ where: {email: email} });
+    // res.redirect('/protected');
+    // res.status(200).send('OKKE');
+    const user = req.user
 
         if (user && (await bcrypt.compare(password, user.password))) {
             // Create token
